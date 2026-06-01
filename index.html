@@ -24,6 +24,11 @@
 
     html { scroll-behavior: smooth; }
 
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      html { scroll-behavior: auto; }
+    }
+
     body {
       background: var(--black);
       color: var(--white);
@@ -230,10 +235,50 @@
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
       box-shadow: 0 0 30px rgba(201,168,76,0.3);
+      min-height: 44px;
     }
     .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 0 50px rgba(201,168,76,0.5);
+    }
+
+    /* ── FLOATING CTA ── */
+    .floating-cta {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+    }
+    .floating-cta.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .floating-cta a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+      color: var(--black);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 50px;
+      box-shadow: 0 8px 32px rgba(201,168,76,0.4), 0 2px 8px rgba(0,0,0,0.5);
+      min-height: 44px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .floating-cta a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(201,168,76,0.55);
     }
     .hero-trust-row {
       margin-top: 20px;
@@ -363,7 +408,9 @@
       border-radius: 14px;
       padding: 20px 16px;
       text-align: left;
+      transition: border-color 0.2s;
     }
+    .pillar-card:hover { border-color: rgba(201,168,76,0.35); }
     .pillar-card .pillar-icon { font-size: 22px; margin-bottom: 8px; }
     .pillar-card h4 {
       font-size: 14px;
@@ -797,6 +844,7 @@
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
       box-shadow: 0 0 40px rgba(201,168,76,0.25);
+      min-height: 44px;
     }
     .btn-cta-big:hover { transform: translateY(-2px); box-shadow: 0 0 60px rgba(201,168,76,0.45); }
     .price-trust {
@@ -940,7 +988,8 @@
       <div class="logo-text">Script<br>Divin</div>
     </a>
     <div class="header-trust">
-      <span>🔒</span> Accès immédiat · Paiement sécurisé
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gold);flex-shrink:0"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Accès immédiat · Paiement sécurisé
     </div>
   </header>
 
@@ -976,9 +1025,9 @@
         ACCÉDER À LA MÉTHODE →
       </a>
       <div class="hero-trust-row">
-        <span><i>🔒</i> Paiement sécurisé</span>
-        <span><i>⚡</i> Accès immédiat</span>
-        <span><i>↩</i> Garantie 7 jours</span>
+        <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Paiement sécurisé</span>
+        <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Accès immédiat</span>
+        <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> Garantie 7 jours</span>
       </div>
     </div>
   </section>
@@ -1033,22 +1082,22 @@
       </p>
       <div class="pillars-grid">
         <div class="pillar-card">
-          <div class="pillar-icon">🔁</div>
+          <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></div>
           <h4>Répétition mentale</h4>
           <p>Ancrer des pensées puissantes par la répétition consciente et régulière.</p>
         </div>
         <div class="pillar-card">
-          <div class="pillar-icon">🎯</div>
+          <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
           <h4>Visualisation</h4>
           <p>Projeter mentalement vos objectifs atteints avec clarté et émotion.</p>
         </div>
         <div class="pillar-card">
-          <div class="pillar-icon">💛</div>
+          <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
           <h4>Concentration émotionnelle</h4>
           <p>Connecter vos affirmations à des ressentis positifs pour amplifier leur impact.</p>
         </div>
         <div class="pillar-card">
-          <div class="pillar-icon">⚡</div>
+          <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
           <h4>Discipline</h4>
           <p>Pratiquer chaque jour, même quand la motivation n'est pas au rendez-vous.</p>
         </div>
@@ -1208,7 +1257,7 @@
       <div class="divider"></div>
       <div class="routine-grid">
         <div class="routine-card">
-          <h4>☀️ Matin</h4>
+          <h4><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg> Matin</h4>
           <ul>
             <li>Eau au réveil</li>
             <li>Étirements & soleil matinal</li>
@@ -1217,7 +1266,7 @@
           </ul>
         </div>
         <div class="routine-card">
-          <h4>🌙 Soir</h4>
+          <h4><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg> Soir</h4>
           <ul>
             <li>Gratitude & visualisation</li>
             <li>Réduction des écrans</li>
@@ -1295,7 +1344,7 @@
       <div class="divider"></div>
       <div class="product-cards">
         <div class="product-card">
-          <div class="product-icon">📖</div>
+          <div class="product-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
           <div>
             <h4>Script Divin — Guide Complet</h4>
             <p>Le guide de reprogrammation mentale avec le défi de 21 jours. Clarté mentale, discipline renforcée, confiance en soi et habitudes positives.</p>
@@ -1303,7 +1352,7 @@
           </div>
         </div>
         <div class="product-card">
-          <div class="product-icon">📘</div>
+          <div class="product-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></div>
           <div>
             <h4>Programme Jour par Jour</h4>
             <p>Le planning détaillé semaine par semaine : chaque journée avec ses actions, son focus et son intention. Plus les affirmations puissantes et l'exercice de gratitude.</p>
@@ -1311,7 +1360,7 @@
           </div>
         </div>
         <div class="product-card">
-          <div class="product-icon">🎯</div>
+          <div class="product-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
           <div>
             <h4>Plan d'Objectifs sur 5 Domaines</h4>
             <p>Physique, financier, émotionnel, spirituel et familial. Un outil complet pour aligner votre vie avec vos vraies priorités.</p>
@@ -1381,9 +1430,9 @@
           COMMENCER LES 21 JOURS →
         </a>
         <div class="price-trust">
-          <span>🔒 Paiement sécurisé</span>
-          <span>⚡ Accès immédiat</span>
-          <span>↩ Garantie 7 jours</span>
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Paiement sécurisé</span>
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> Accès immédiat</span>
+          <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> Garantie 7 jours</span>
         </div>
         <p class="price-rating">
           <span class="stars-sm">★★★★★</span> 4,8/5 — Accès instantané à la méthode complète
@@ -1439,6 +1488,14 @@
     </p>
   </footer>
 
+  <!-- FLOATING CTA -->
+  <div class="floating-cta" id="floating-cta">
+    <a href="https://pay.kiwify.com.br/zDSkO5H?src=v3_e2a649ee-6e50-4471-ab9d-89ccef1bcdd0_6a1b9be11b7e0f2d6828c60f_0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      COMMENCER — €27
+    </a>
+  </div>
+
   <script>
     // Hide placeholder if video loads
     const video = document.getElementById('hero-video');
@@ -1448,6 +1505,14 @@
       video.style.display = 'block';
     });
     video.style.display = 'none';
+
+    // Floating CTA — aparece após o hero
+    const floatingCta = document.getElementById('floating-cta');
+    const hero = document.querySelector('.hero');
+    const observer = new IntersectionObserver(([entry]) => {
+      floatingCta.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0 });
+    observer.observe(hero);
   </script>
 
 </body>
