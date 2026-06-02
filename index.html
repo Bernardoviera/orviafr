@@ -1738,27 +1738,29 @@
       const canvas = document.getElementById('hero-particles');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      let W, H, particles = [];
+      let W, H, particles = [], animId;
       const COLORS = ['rgba(201,168,76,', 'rgba(232,201,106,', 'rgba(154,122,48,'];
+
+      function rand(a, b) { return a + Math.random() * (b - a); }
+
+      function initParticles() {
+        particles = [];
+        for (let i = 0; i < 65; i++) {
+          particles.push({
+            x: rand(0, W), y: rand(0, H),
+            r: rand(0.8, 2.5),
+            vx: rand(-0.25, 0.25), vy: rand(-0.4, -0.1),
+            alpha: rand(0.1, 0.7),
+            dalpha: rand(0.002, 0.006),
+            color: COLORS[Math.floor(Math.random() * COLORS.length)]
+          });
+        }
+      }
 
       function resize() {
         W = canvas.width  = canvas.offsetWidth;
         H = canvas.height = canvas.offsetHeight;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      function rand(a, b) { return a + Math.random() * (b - a); }
-
-      for (let i = 0; i < 65; i++) {
-        particles.push({
-          x: rand(0, W || 400), y: rand(0, H || 800),
-          r: rand(0.8, 2.5),
-          vx: rand(-0.25, 0.25), vy: rand(-0.4, -0.1),
-          alpha: rand(0.1, 0.7),
-          dalpha: rand(0.002, 0.006),
-          color: COLORS[Math.floor(Math.random() * COLORS.length)]
-        });
+        initParticles();
       }
 
       function draw() {
@@ -1775,9 +1777,15 @@
           ctx.fillStyle = p.color + p.alpha + ')';
           ctx.fill();
         });
-        requestAnimationFrame(draw);
+        animId = requestAnimationFrame(draw);
       }
-      draw();
+
+      // Wait for layout to be ready before reading dimensions
+      window.addEventListener('resize', resize);
+      requestAnimationFrame(function init() {
+        resize();
+        draw();
+      });
     })();
   </script>
 
