@@ -210,12 +210,11 @@
     }
     .hero-bullets {
       list-style: none;
-      display: inline-flex;
+      display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 10px;
       margin-bottom: 36px;
-      text-align: left;
     }
     .hero-bullets li {
       display: flex;
@@ -223,6 +222,8 @@
       gap: 10px;
       font-size: 15px;
       color: var(--white-muted);
+      max-width: 300px;
+      text-align: left;
     }
     .hero-bullets li .star {
       color: var(--gold);
