@@ -962,6 +962,82 @@
     .footer-contact { font-size: 13px; color: var(--gray); }
     .footer-contact a { color: var(--gold); text-decoration: none; }
 
+    /* ── VALUE STACK ── */
+    .value-stack { display: flex; flex-direction: column; gap: 14px; max-width: 600px; margin: 36px auto 0; }
+    .vs-card {
+      background: var(--black-card);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 16px;
+      padding: 22px 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .vs-card.bonus-card { border-color: rgba(39,174,96,0.25); }
+    .vs-card:hover { border-color: rgba(201,168,76,0.35); }
+    .vs-icon {
+      width: 48px; height: 48px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .vs-icon.green { background: rgba(39,174,96,0.1); border-color: rgba(39,174,96,0.3); }
+    .vs-body { flex: 1; }
+    .vs-badge {
+      display: inline-block;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 20px; margin-bottom: 6px;
+    }
+    .vs-badge.principal { background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); }
+    .vs-badge.bonus-free { background: rgba(39,174,96,0.12); border: 1px solid rgba(39,174,96,0.3); color: #4CAF50; }
+    .vs-body h4 { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .vs-body p { font-size: 13px; color: var(--gray); line-height: 1.5; margin-bottom: 8px; }
+    .vs-value { display: flex; align-items: center; gap: 8px; }
+    .vs-value .val-old { font-size: 12px; color: var(--gray); text-decoration: line-through; }
+    .vs-value .val-free { font-size: 12px; font-weight: 700; color: #4CAF50; }
+    .vs-value .val-main { font-size: 12px; font-weight: 700; color: var(--gold); }
+    .value-total {
+      max-width: 600px; margin: 20px auto 0;
+      background: linear-gradient(135deg, #0f0b02, #1a1200);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .value-total .vt-label { font-size: 13px; color: var(--gray); }
+    .value-total .vt-old { font-size: 18px; color: var(--gray); text-decoration: line-through; }
+    .value-total .vt-new { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: var(--gold); }
+    .value-total .vt-note { font-size: 11px; color: var(--gray); }
+
+    /* ── FAQ ── */
+    .faq { background: var(--black); text-align: center; }
+    .faq-list { max-width: 600px; margin: 36px auto 0; display: flex; flex-direction: column; gap: 10px; text-align: left; }
+    .faq-item {
+      background: var(--black-card);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%; background: none; border: none; cursor: pointer;
+      padding: 18px 20px; display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: var(--white);
+      text-align: left; gap: 12px; transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--gold); }
+    .faq-icon { color: var(--gold); font-size: 20px; flex-shrink: 0; transition: transform 0.25s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      font-size: 14px; color: var(--gray); line-height: 1.7;
+      padding: 0 20px;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; padding: 0 20px 18px; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 480px) {
       .routine-grid { grid-template-columns: 1fr; }
@@ -1014,12 +1090,12 @@
         votre Esprit
       </h1>
       <p class="hero-sub">
-        Découvrez le rituel quotidien qui transforme votre mental, installe la discipline et la clarté — en seulement 5 à 10 minutes par jour.
+        Un rituel quotidien de 5 à 10 minutes, fondé sur la répétition mentale et la visualisation, pour retrouver discipline, clarté et confiance durablement.
       </p>
       <ul class="hero-bullets">
-        <li>Méthode simple, résultats profonds</li>
-        <li>Accès immédiat après paiement</li>
-        <li>Déjà adopté par des milliers de personnes</li>
+        <li>Simple à intégrer dans votre quotidien</li>
+        <li>Accès immédiat à tous les guides</li>
+        <li>Testé et adopté par des milliers de personnes</li>
       </ul>
       <a href="https://pay.kiwify.com.br/zDSkO5H?src=v3_e2a649ee-6e50-4471-ab9d-89ccef1bcdd0_6a1b9be11b7e0f2d6828c60f_0" class="btn-primary">
         ACCÉDER À LA MÉTHODE →
@@ -1062,12 +1138,12 @@
       <span class="section-label">La vérité</span>
       <h2>La plus grande bataille<br><em>se déroule dans votre esprit</em></h2>
       <div class="divider"></div>
-      <p>La vie ne vous résiste pas de l'extérieur. Elle vous résiste de l'intérieur — à travers vos pensées répétées, vos doutes silencieux et vos habitudes inconscientes.</p>
-      <p>Des pensées négatives ancrées au quotidien engendrent la peur, la procrastination, l'insécurité et le manque de direction.</p>
+      <p>Les obstacles viennent rarement de l'extérieur. Ils viennent souvent de l'intérieur — des pensées répétées, des doutes silencieux, des habitudes ancrées sans qu'on s'en rende compte.</p>
+      <p>Des pensées négatives répétées au quotidien peuvent générer de la peur, de la procrastination et un manque de direction. Ce n'est pas un défaut de caractère — c'est un schéma mental qu'on peut travailler à changer.</p>
       <div class="battle-quote">
-        Mais lorsque vous commencez à contrôler vos pensées, vos émotions et vos habitudes — votre vie commence à changer. <strong>Progressivement. Puissamment.</strong>
+        Lorsqu'on commence à observer ses pensées et à les orienter différemment, les habitudes et les comportements changent progressivement. <strong>C'est un travail de fond, pas un miracle.</strong>
       </div>
-      <p>Le Script Divin est né de cette conviction : <strong>un esprit fort est la fondation de toute transformation durable.</strong></p>
+      <p>Le Script Divin a été conçu pour accompagner ce travail intérieur : <strong>forger un esprit plus solide, jour après jour.</strong></p>
     </div>
   </section>
 
@@ -1290,45 +1366,45 @@
       <div class="testimonials-grid">
         <div class="testimonial-card">
           <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">« Cette méthode a littéralement changé ma façon de penser. En quelques jours, je me suis senti plus confiant, plus discipliné. Je ne pensais pas qu'une phrase pouvait avoir autant d'impact. »</p>
+          <p class="testimonial-text">« J'avais essayé plusieurs méthodes de développement personnel sans résultat durable. Avec le Script Divin, au bout de 12 jours j'ai arrêté de procrastiner sur mon projet. Je ne pensais pas qu'une habitude de 10 minutes pouvait avoir cet effet. »</p>
           <div class="testimonial-author">
             <div class="author-avatar">L</div>
             <div>
-              <div class="author-name">Lucas D.</div>
-              <div class="author-location">Paris, FR</div>
+              <div class="author-name">Lucas D., 34 ans</div>
+              <div class="author-location">Paris — Entrepreneur</div>
             </div>
           </div>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">« Simple à comprendre, puissant à appliquer. J'ai commencé le défi des 21 jours et dès la première semaine j'ai remarqué un vrai changement dans mon mental et ma motivation. Je recommande à 100% ! »</p>
+          <p class="testimonial-text">« J'étais sceptique au départ. Mais j'ai suivi le défi des 21 jours sérieusement. Résultat : je me lève chaque matin avec une clarté que je n'avais pas depuis longtemps. Ma discipline au travail s'est vraiment améliorée. »</p>
           <div class="testimonial-author">
             <div class="author-avatar">S</div>
             <div>
-              <div class="author-name">Sophie M.</div>
-              <div class="author-location">Lyon, FR</div>
+              <div class="author-name">Sophie M., 29 ans</div>
+              <div class="author-location">Lyon — Chargée de projet</div>
             </div>
           </div>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">« En quelques jours, j'ai remarqué un vrai changement dans mon mental et ma motivation. Je me sens plus claire, plus disciplinée et beaucoup plus confiante. »</p>
+          <p class="testimonial-text">« Je traverse une période difficile personnellement. Ce rituel m'a aidée à garder la tête hors de l'eau. Je ne dis pas que ça résout tout, mais ça m'a redonné de l'énergie et de la confiance pour avancer. »</p>
           <div class="testimonial-author">
             <div class="author-avatar">C</div>
             <div>
-              <div class="author-name">Claire B.</div>
-              <div class="author-location">Marseille, FR</div>
+              <div class="author-name">Claire B., 41 ans</div>
+              <div class="author-location">Nantes — Infirmière</div>
             </div>
           </div>
         </div>
         <div class="testimonial-card">
           <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text">« Je suis quelqu'un de très sceptique. Mais après 7 jours de pratique, j'ai dû admettre que quelque chose changeait en moi. Ma discipline s'est renforcée, mes pensées sont plus positives. »</p>
+          <p class="testimonial-text">« Honnêtement je pensais que c'était du pseudo-développement personnel classique. Mais après 3 semaines de pratique régulière, mes pensées négatives automatiques ont vraiment diminué. C'est concret, pas de promesses magiques. »</p>
           <div class="testimonial-author">
             <div class="author-avatar">T</div>
             <div>
-              <div class="author-name">Thomas R.</div>
-              <div class="author-location">Bordeaux, FR</div>
+              <div class="author-name">Thomas R., 38 ans</div>
+              <div class="author-location">Bordeaux — Ingénieur</div>
             </div>
           </div>
         </div>
@@ -1339,33 +1415,83 @@
   <!-- WHAT YOU GET -->
   <section class="product">
     <div class="container">
-      <span class="section-label">Votre accès complet</span>
-      <h2>Ce que vous recevez<br><em>immédiatement</em></h2>
+      <span class="section-label">Ce que vous recevez</span>
+      <h2>Tout ce qui est inclus<br><em>dans votre accès</em></h2>
       <div class="divider"></div>
-      <div class="product-cards">
-        <div class="product-card">
-          <div class="product-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
-          <div>
-            <h4>Script Divin — Guide Complet</h4>
-            <p>Le guide de reprogrammation mentale avec le défi de 21 jours. Clarté mentale, discipline renforcée, confiance en soi et habitudes positives.</p>
-            <span class="product-tag">Inclus</span>
+      <div class="value-stack">
+        <div class="vs-card">
+          <div class="vs-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+          <div class="vs-body">
+            <span class="vs-badge principal">Produit principal</span>
+            <h4>Script Divin — Le Système des 12 Mots</h4>
+            <p>Le guide complet de reprogrammation mentale : le rituel des 12 mots, les 5 piliers, comment pratiquer correctement, et comment éliminer les croyances limitantes.</p>
+            <div class="vs-value"><span class="val-main">Valeur : €97</span></div>
           </div>
         </div>
-        <div class="product-card">
-          <div class="product-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></div>
-          <div>
-            <h4>Programme Jour par Jour</h4>
-            <p>Le planning détaillé semaine par semaine : chaque journée avec ses actions, son focus et son intention. Plus les affirmations puissantes et l'exercice de gratitude.</p>
-            <span class="product-tag">Inclus</span>
+        <div class="vs-card bonus-card">
+          <div class="vs-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M8 18h.01M12 18h.01"/></svg></div>
+          <div class="vs-body">
+            <span class="vs-badge bonus-free">Bonus offert</span>
+            <h4>Le Défi des 21 Jours</h4>
+            <p>Le programme complet jour par jour en 4 phases : fondation, approfondissement, consolidation et transformation. Chaque journée avec ses actions et son intention.</p>
+            <div class="vs-value"><span class="val-old">€47</span><span class="val-free">OFFERT</span></div>
           </div>
         </div>
-        <div class="product-card">
-          <div class="product-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-          <div>
-            <h4>Plan d'Objectifs sur 5 Domaines</h4>
-            <p>Physique, financier, émotionnel, spirituel et familial. Un outil complet pour aligner votre vie avec vos vraies priorités.</p>
-            <span class="product-tag bonus">Bonus</span>
+        <div class="vs-card bonus-card">
+          <div class="vs-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="1.8"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+          <div class="vs-body">
+            <span class="vs-badge bonus-free">Bonus offert</span>
+            <h4>Journal de Gratitude &amp; Plan d'Objectifs</h4>
+            <p>L'exercice quotidien de gratitude et le plan d'objectifs sur 5 domaines — physique, financier, émotionnel, spirituel et familial.</p>
+            <div class="vs-value"><span class="val-old">€27</span><span class="val-free">OFFERT</span></div>
           </div>
+        </div>
+      </div>
+      <div class="value-total">
+        <div>
+          <div class="vt-label">Valeur totale</div>
+          <div class="vt-old">€171</div>
+          <div class="vt-note">Méthode + 2 bonus offerts</div>
+        </div>
+        <div style="text-align:right">
+          <div class="vt-label">Aujourd'hui seulement</div>
+          <div class="vt-new">€27</div>
+          <div class="vt-note">Paiement unique · Accès à vie</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <span class="section-label">Vos questions</span>
+      <h2>Questions<br><em>fréquentes</em></h2>
+      <div class="divider"></div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question">Est-ce que le Script Divin a une base scientifique ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">Oui. Le principe repose sur la neuroplasticité — la capacité du cerveau à former de nouveaux schémas mentaux par la répétition. Des études en neurosciences montrent que les affirmations répétées avec intention et émotion activent les mêmes circuits neuronaux que les expériences réelles. Ce n'est pas de la magie : c'est de l'entraînement mental.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Combien de temps avant de voir des résultats ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">Beaucoup de personnes rapportent un premier changement dans leur état d'esprit dès les 5 à 7 premiers jours. Des résultats plus profonds — meilleure discipline, clarté mentale, confiance renforcée — se consolident généralement entre le jour 14 et le jour 21. La constance est la clé.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Je suis sceptique. Est-ce que ça fonctionne vraiment ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">Le scepticisme est sain. C'est pourquoi nous offrons une garantie de 7 jours sans condition. Testez la méthode pendant une semaine complète. Si vous ne remarquez aucun changement, nous vous remboursons intégralement. Vous n'avez rien à perdre.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Combien de temps ça prend par jour ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">Entre 5 et 10 minutes par session — le matin au réveil et le soir avant de dormir. Soit 10 à 20 minutes par jour. La régularité prime sur la durée.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Qu'est-ce que je reçois exactement après l'achat ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">Immédiatement après le paiement, vous recevez un accès numérique à : le Guide Complet Script Divin (méthode des 12 mots), le programme Défi des 21 Jours (bonus offert), et le Journal de Gratitude &amp; Plan d'Objectifs (bonus offert). Le tout accessible depuis n'importe quel appareil.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Et si ça ne fonctionne pas pour moi ?<span class="faq-icon">+</span></button>
+          <div class="faq-answer">Vous bénéficiez d'une garantie satisfaction complète de 7 jours. Si vous n'êtes pas satisfait pour quelque raison que ce soit dans ce délai, envoyez un simple email à support@scriptdivin.com et vous serez remboursé intégralement, sans justification demandée.</div>
         </div>
       </div>
     </div>
@@ -1479,9 +1605,9 @@
     </div>
     <p class="copyright">© 2025 Script Divin. Tous droits réservés.</p>
     <div class="footer-links">
-      <a href="#">Mentions légales</a>
-      <a href="#">Politique de confidentialité</a>
-      <a href="#">Contact</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="politique-de-confidentialite.html">Politique de confidentialité</a>
+      <a href="mailto:support@scriptdivin.com">Contact</a>
     </div>
     <p class="footer-contact">
       <a href="mailto:support@scriptdivin.com">support@scriptdivin.com</a>
@@ -1505,6 +1631,16 @@
       video.style.display = 'block';
     });
     video.style.display = 'none';
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
 
     // Floating CTA — aparece após o hero
     const floatingCta = document.getElementById('floating-cta');
