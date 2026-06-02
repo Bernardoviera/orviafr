@@ -47,8 +47,24 @@
       font-size: 14px;
       font-weight: 500;
       letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
     .announcement-bar span { color: var(--gold-light); font-weight: 700; }
+    .countdown-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,0,0,0.25);
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: 13px;
+    }
+    .countdown-wrap svg { flex-shrink: 0; }
+    #countdown { font-weight: 700; color: #fff; letter-spacing: 0.05em; font-variant-numeric: tabular-nums; }
 
     /* ── HEADER ── */
     header {
@@ -78,6 +94,7 @@
       align-items: center;
       justify-content: center;
       font-size: 18px;
+      color: var(--gold);
     }
     .logo-text {
       font-family: 'Playfair Display', serif;
@@ -682,20 +699,29 @@
       gap: 12px;
     }
     .author-avatar {
-      width: 42px;
-      height: 42px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--gold-dark), var(--gold));
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 17px;
       color: var(--black);
       flex-shrink: 0;
+      box-shadow: 0 0 0 2px var(--black-card), 0 0 0 3.5px var(--gold);
     }
     .author-name { font-size: 14px; font-weight: 600; color: var(--white); }
-    .author-location { font-size: 12px; color: var(--gray); }
+    .author-location { font-size: 12px; color: var(--gray); margin-top: 2px; }
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: #4CAF50;
+      margin-top: 4px;
+    }
 
     /* ── WHAT YOU GET ── */
     .product { background: var(--black-soft); text-align: center; }
@@ -1110,7 +1136,11 @@
 
   <!-- ANNOUNCEMENT BAR -->
   <div class="announcement-bar">
-    NOUVEAU : Accédez à la méthode complète des 12 mots avec <span>-72% de réduction temporaire</span>
+    <span>🔥</span> Offre limitée — <span>-72% de réduction</span> se termine dans :
+    <div class="countdown-wrap">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <span id="countdown">23:59:59</span>
+    </div>
   </div>
 
   <!-- HEADER -->
@@ -1428,6 +1458,7 @@
             <div>
               <div class="author-name">Lucas D., 34 ans</div>
               <div class="author-location">Paris — Entrepreneur</div>
+              <div class="verified-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Achat vérifié</div>
             </div>
           </div>
         </div>
@@ -1439,6 +1470,7 @@
             <div>
               <div class="author-name">Sophie M., 29 ans</div>
               <div class="author-location">Lyon — Chargée de projet</div>
+              <div class="verified-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Achat vérifié</div>
             </div>
           </div>
         </div>
@@ -1450,6 +1482,7 @@
             <div>
               <div class="author-name">Claire B., 41 ans</div>
               <div class="author-location">Nantes — Infirmière</div>
+              <div class="verified-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Achat vérifié</div>
             </div>
           </div>
         </div>
@@ -1461,6 +1494,7 @@
             <div>
               <div class="author-name">Thomas R., 38 ans</div>
               <div class="author-location">Bordeaux — Ingénieur</div>
+              <div class="verified-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Achat vérifié</div>
             </div>
           </div>
         </div>
@@ -1679,6 +1713,33 @@
   </div>
 
   <script>
+    // ── COUNTDOWN TIMER ──
+    (function() {
+      const el = document.getElementById('countdown');
+      if (!el) return;
+      const KEY = 'sd_deadline';
+      const DURATION = 24 * 60 * 60 * 1000;
+      let deadline = parseInt(localStorage.getItem(KEY));
+      if (!deadline || deadline < Date.now()) {
+        deadline = Date.now() + DURATION;
+        localStorage.setItem(KEY, deadline);
+      }
+      function pad(n) { return String(n).padStart(2, '0'); }
+      function tick() {
+        const diff = deadline - Date.now();
+        if (diff <= 0) {
+          deadline = Date.now() + DURATION;
+          localStorage.setItem(KEY, deadline);
+        }
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        el.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+
     // Video autoplay — force play on iOS and hide placeholder when ready
     const video = document.getElementById('hero-video');
     const placeholder = document.getElementById('video-placeholder');
