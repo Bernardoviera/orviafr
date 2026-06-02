@@ -223,12 +223,10 @@
       font-size: 15px;
       color: var(--white-muted);
     }
-    .hero-bullets li::before {
-      content: '✦';
+    .hero-bullets li .star {
       color: var(--gold);
       font-size: 10px;
       flex-shrink: 0;
-      align-self: center;
     }
     .btn-primary {
       display: inline-block;
@@ -1127,7 +1125,7 @@
   <!-- HERO WITH VIDEO BACKGROUND -->
   <section class="hero">
     <div class="hero-video-container">
-      <video id="hero-video" autoplay muted loop playsinline poster="">
+      <video id="hero-video" autoplay muted loop playsinline webkit-playsinline x-webkit-airplay="deny" disablepictureinpicture poster="">
         <source src="hero.mp4" type="video/mp4">
       </video>
       <div class="hero-video-placeholder" id="video-placeholder"></div>
@@ -1148,9 +1146,9 @@
         Un rituel quotidien de 5 à 10 minutes, fondé sur la répétition mentale et la visualisation, pour retrouver discipline, clarté et confiance durablement.
       </p>
       <ul class="hero-bullets">
-        <li>Simple à intégrer dans votre quotidien</li>
-        <li>Accès immédiat à tous les guides</li>
-        <li>Testé et adopté par des milliers de personnes</li>
+        <li><span class="star">✦</span>Simple à intégrer dans votre quotidien</li>
+        <li><span class="star">✦</span>Accès immédiat à tous les guides</li>
+        <li><span class="star">✦</span>Testé et adopté par des milliers de personnes</li>
       </ul>
       <a href="https://pay.kiwify.com.br/zDSkO5H?src=v3_e2a649ee-6e50-4471-ab9d-89ccef1bcdd0_6a1b9be11b7e0f2d6828c60f_0" class="btn-primary">
         ACCÉDER À LA MÉTHODE →
@@ -1678,14 +1676,22 @@
   </div>
 
   <script>
-    // Hide placeholder if video loads
+    // Video autoplay — force play on iOS and hide placeholder when ready
     const video = document.getElementById('hero-video');
     const placeholder = document.getElementById('video-placeholder');
+    video.style.display = 'none';
     video.addEventListener('canplay', () => {
       placeholder.style.display = 'none';
       video.style.display = 'block';
     });
-    video.style.display = 'none';
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay blocked — keep placeholder visible, try again on first interaction
+        document.addEventListener('touchstart', () => video.play(), { once: true });
+        document.addEventListener('click', () => video.play(), { once: true });
+      });
+    }
 
     // FAQ accordion
     document.querySelectorAll('.faq-question').forEach(btn => {
