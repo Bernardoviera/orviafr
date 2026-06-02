@@ -1758,8 +1758,9 @@
       }
 
       function resize() {
-        W = canvas.width  = canvas.offsetWidth;
-        H = canvas.height = canvas.offsetHeight;
+        const hero = document.querySelector('.hero');
+        W = canvas.width  = hero ? hero.clientWidth  : window.innerWidth;
+        H = canvas.height = hero ? hero.clientHeight : window.innerHeight;
         initParticles();
       }
 
