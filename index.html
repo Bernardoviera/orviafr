@@ -1038,6 +1038,51 @@
     }
     .faq-item.open .faq-answer { max-height: 300px; padding: 0 20px 18px; }
 
+    /* ── ANIMATIONS ── */
+    @keyframes fadeInUp   { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeInDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn     { from { opacity:0; } to { opacity:1; } }
+    @keyframes scaleIn    { from { opacity:0; transform:scale(0.92); } to { opacity:1; transform:scale(1); } }
+    @keyframes shimmerSlide { 0%{background-position:-200% center;} 100%{background-position:200% center;} }
+
+    /* Hero entrance */
+    .hero-content .badge-offer { opacity:0; animation: fadeInDown 0.6s ease forwards 0.2s; }
+    .hero-content h1            { opacity:0; animation: fadeInUp   0.7s ease forwards 0.4s; }
+    .hero-content .hero-sub     { opacity:0; animation: fadeInUp   0.7s ease forwards 0.65s; }
+    .hero-content .hero-bullets { opacity:0; animation: fadeInUp   0.6s ease forwards 0.85s; }
+    .hero-content .btn-primary  { opacity:0; animation: scaleIn    0.6s ease forwards 1.05s; }
+    .hero-content .hero-trust-row { opacity:0; animation: fadeIn   0.6s ease forwards 1.3s; }
+
+    /* Scroll animations base */
+    .aos { opacity:0; transform:translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .aos.stagger-1 { transition-delay: 0.1s; }
+    .aos.stagger-2 { transition-delay: 0.2s; }
+    .aos.stagger-3 { transition-delay: 0.3s; }
+    .aos.stagger-4 { transition-delay: 0.4s; }
+    .aos.stagger-5 { transition-delay: 0.5s; }
+    .aos.visible   { opacity:1; transform:translateY(0); }
+
+    /* Gold shimmer on section labels */
+    .section-label {
+      background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 40%, var(--gold-dark) 60%, var(--gold-light) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmerSlide 3s linear infinite;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 16px; display: block;
+    }
+
+    /* Stat numbers glow on count */
+    .stat-num { transition: color 0.3s; }
+    .stat-item.counted .stat-num { text-shadow: 0 0 20px rgba(201,168,76,0.6); }
+
+    /* Canvas particles */
+    #hero-particles {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 480px) {
       .routine-grid { grid-template-columns: 1fr; }
@@ -1077,6 +1122,7 @@
         <!-- <source src="votre-video.mp4" type="video/mp4"> -->
       </video>
       <div class="hero-video-placeholder" id="video-placeholder"></div>
+      <canvas id="hero-particles"></canvas>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -1123,11 +1169,11 @@
       <h2>Pourquoi votre vie ne change pas<br><em>malgré vos efforts</em></h2>
       <div class="divider"></div>
       <ul class="problem-list">
-        <li><span class="icon-x">✗</span> Vous commencez avec motivation… et abandonnez après quelques jours</li>
-        <li><span class="icon-x">✗</span> Vous vous dites "je vais changer" depuis trop longtemps</li>
-        <li><span class="icon-x">✗</span> La procrastination et le manque de discipline vous bloquent</li>
-        <li><span class="icon-x">✗</span> Des pensées négatives sabotent vos projets sans que vous le remarquiez</li>
-        <li><span class="icon-x">✗</span> Vous savez quoi faire, mais vous n'arrivez pas à agir</li>
+        <li class="aos stagger-1"><span class="icon-x">✗</span> Vous commencez avec motivation… et abandonnez après quelques jours</li>
+        <li class="aos stagger-2"><span class="icon-x">✗</span> Vous vous dites "je vais changer" depuis trop longtemps</li>
+        <li class="aos stagger-3"><span class="icon-x">✗</span> La procrastination et le manque de discipline vous bloquent</li>
+        <li class="aos stagger-4"><span class="icon-x">✗</span> Des pensées négatives sabotent vos projets sans que vous le remarquiez</li>
+        <li class="aos stagger-5"><span class="icon-x">✗</span> Vous savez quoi faire, mais vous n'arrivez pas à agir</li>
       </ul>
     </div>
   </section>
@@ -1156,7 +1202,7 @@
       <p style="color:var(--white-muted);font-size:16px;line-height:1.8;">
         Le Script Divin est un <strong style="color:var(--white)">rituel quotidien de reprogrammation mentale</strong> fondé sur cinq piliers essentiels. Ensemble, ils créent les conditions pour que votre cerveau adopte de nouveaux schémas de pensée — plus positifs, plus concentrés, plus alignés avec vos objectifs.
       </p>
-      <div class="pillars-grid">
+      <div class="pillars-grid aos">
         <div class="pillar-card">
           <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg></div>
           <h4>Répétition mentale</h4>
@@ -1187,7 +1233,7 @@
       <span class="section-label">Le Rituel Central</span>
       <h2>Les <em>12 Mots</em> qui Transforment</h2>
       <div class="divider"></div>
-      <div class="script-box">
+      <div class="script-box aos">
         <span class="script-label">Le Script Divin</span>
         <p class="script-phrase">
           « J'attire la discipline, l'abondance, le courage, la clarté, la paix et les opportunités chaque jour. »
@@ -1211,35 +1257,35 @@
       </div>
 
       <div class="ritual-steps">
-        <div class="ritual-step">
+        <div class="ritual-step aos stagger-1">
           <div class="step-num">1</div>
           <div class="step-text">
             <h4>Choisissez un environnement calme</h4>
             <p>Asseyez-vous confortablement, fermez les yeux, sans distractions.</p>
           </div>
         </div>
-        <div class="ritual-step">
+        <div class="ritual-step aos stagger-2">
           <div class="step-num">2</div>
           <div class="step-text">
             <h4>Respirez profondément</h4>
             <p>Une minute de respiration consciente pour centrer votre esprit.</p>
           </div>
         </div>
-        <div class="ritual-step">
+        <div class="ritual-step aos stagger-3">
           <div class="step-num">3</div>
           <div class="step-text">
             <h4>Répétez le Script Divin</h4>
             <p>33 fois, lentement, avec intention et émotion sincère.</p>
           </div>
         </div>
-        <div class="ritual-step">
+        <div class="ritual-step aos stagger-4">
           <div class="step-num">4</div>
           <div class="step-text">
             <h4>Visualisez votre meilleure version</h4>
             <p>Imaginez vos objectifs atteints avec tous les détails et les émotions.</p>
           </div>
         </div>
-        <div class="ritual-step">
+        <div class="ritual-step aos stagger-5">
           <div class="step-num">5</div>
           <div class="step-text">
             <h4>Terminez avec gratitude</h4>
@@ -1364,7 +1410,7 @@
       <h2>Déjà adopté par des milliers<br><em>de personnes</em></h2>
       <div class="divider"></div>
       <div class="testimonials-grid">
-        <div class="testimonial-card">
+        <div class="testimonial-card aos stagger-1">
           <div class="testimonial-stars">★★★★★</div>
           <p class="testimonial-text">« J'avais essayé plusieurs méthodes de développement personnel sans résultat durable. Avec le Script Divin, au bout de 12 jours j'ai arrêté de procrastiner sur mon projet. Je ne pensais pas qu'une habitude de 10 minutes pouvait avoir cet effet. »</p>
           <div class="testimonial-author">
@@ -1375,7 +1421,7 @@
             </div>
           </div>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card aos stagger-2">
           <div class="testimonial-stars">★★★★★</div>
           <p class="testimonial-text">« J'étais sceptique au départ. Mais j'ai suivi le défi des 21 jours sérieusement. Résultat : je me lève chaque matin avec une clarté que je n'avais pas depuis longtemps. Ma discipline au travail s'est vraiment améliorée. »</p>
           <div class="testimonial-author">
@@ -1386,7 +1432,7 @@
             </div>
           </div>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card aos stagger-3">
           <div class="testimonial-stars">★★★★★</div>
           <p class="testimonial-text">« Je traverse une période difficile personnellement. Ce rituel m'a aidée à garder la tête hors de l'eau. Je ne dis pas que ça résout tout, mais ça m'a redonné de l'énergie et de la confiance pour avancer. »</p>
           <div class="testimonial-author">
@@ -1397,7 +1443,7 @@
             </div>
           </div>
         </div>
-        <div class="testimonial-card">
+        <div class="testimonial-card aos stagger-4">
           <div class="testimonial-stars">★★★★★</div>
           <p class="testimonial-text">« Honnêtement je pensais que c'était du pseudo-développement personnel classique. Mais après 3 semaines de pratique régulière, mes pensées négatives automatiques ont vraiment diminué. C'est concret, pas de promesses magiques. »</p>
           <div class="testimonial-author">
@@ -1515,20 +1561,20 @@
   <!-- STATS BAR -->
   <div class="stats-bar">
     <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-num">21</div>
+      <div class="stat-item aos stagger-1">
+        <div class="stat-num" data-target="21" data-suffix="">0</div>
         <div class="stat-label">Jours de défi</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-num">66×</div>
+      <div class="stat-item aos stagger-2">
+        <div class="stat-num" data-target="66" data-suffix="×">0×</div>
         <div class="stat-label">Répétitions / jour</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-num">5min</div>
+      <div class="stat-item aos stagger-3">
+        <div class="stat-num" data-target="5" data-suffix="min">0min</div>
         <div class="stat-label">Par session</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-num">1 248+</div>
+      <div class="stat-item aos stagger-4">
+        <div class="stat-num" data-target="1248" data-suffix="+">0+</div>
         <div class="stat-label">Avis vérifiés</div>
       </div>
     </div>
@@ -1644,11 +1690,95 @@
 
     // Floating CTA — aparece após o hero
     const floatingCta = document.getElementById('floating-cta');
-    const hero = document.querySelector('.hero');
-    const observer = new IntersectionObserver(([entry]) => {
+    const heroEl = document.querySelector('.hero');
+    const heroObs = new IntersectionObserver(([entry]) => {
       floatingCta.classList.toggle('visible', !entry.isIntersecting);
     }, { threshold: 0 });
-    observer.observe(hero);
+    heroObs.observe(heroEl);
+
+    // ── SCROLL ANIMATIONS (IntersectionObserver) ──
+    const aosObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          aosObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.aos').forEach(el => aosObserver.observe(el));
+
+    // ── NUMBER COUNTER ──
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1400;
+      const start = performance.now();
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const value = Math.floor(ease * target);
+        el.textContent = (target === 1248 ? value.toLocaleString('fr-FR') : value) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.closest('.stat-item').classList.add('counted');
+      }
+      requestAnimationFrame(step);
+    }
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-num[data-target]').forEach(el => counterObserver.observe(el));
+
+    // ── GOLD PARTICLES ──
+    (function() {
+      const canvas = document.getElementById('hero-particles');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [];
+      const COLORS = ['rgba(201,168,76,', 'rgba(232,201,106,', 'rgba(154,122,48,'];
+
+      function resize() {
+        W = canvas.width  = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function rand(a, b) { return a + Math.random() * (b - a); }
+
+      for (let i = 0; i < 65; i++) {
+        particles.push({
+          x: rand(0, W || 400), y: rand(0, H || 800),
+          r: rand(0.8, 2.5),
+          vx: rand(-0.25, 0.25), vy: rand(-0.4, -0.1),
+          alpha: rand(0.1, 0.7),
+          dalpha: rand(0.002, 0.006),
+          color: COLORS[Math.floor(Math.random() * COLORS.length)]
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          p.alpha += p.dalpha;
+          if (p.alpha > 0.75 || p.alpha < 0.05) p.dalpha *= -1;
+          if (p.y < -10) { p.y = H + 10; p.x = rand(0, W); }
+          if (p.x < -10) p.x = W + 10;
+          if (p.x > W + 10) p.x = -10;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color + p.alpha + ')';
+          ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
   </script>
 
 </body>
